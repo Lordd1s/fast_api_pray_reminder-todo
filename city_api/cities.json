@@ -1,0 +1,214 @@
+{
+    "results": [
+        {
+            "title": "Астана",
+            "lng": "71.433333",
+            "lat": "51.133333",
+            "timezone": "6",
+            "slug": "nur-sultan"
+        },
+        {
+            "title": "Алматы",
+            "lng": "76.945465",
+            "lat": "43.238293",
+            "timezone": "6",
+            "slug": "almaty"
+        },
+        {
+            "title": "Шымкент",
+            "lng": "69.6",
+            "lat": "42.3",
+            "timezone": "6",
+            "slug": "shymkent"
+        },
+        {
+            "title": "Арал",
+            "lng": "61.666667",
+            "lat": "46.8",
+            "timezone": "5",
+            "slug": "aral"
+        },
+        {
+            "title": "Байқоныр",
+            "lng": "63.307778",
+            "lat": "45.966111",
+            "timezone": "5",
+            "slug": "baiqonyr"
+        },
+        {
+            "title": "Жітіқара ауданы ",
+            "lng": "61.012478",
+            "lat": "51.937054",
+            "timezone": "6",
+            "slug": "zhtara-audanyi-"
+        },
+        {
+            "title": "Ұзынкөл ауданы ",
+            "lng": "65.474446",
+            "lat": "54.162521",
+            "timezone": "6",
+            "slug": "zyinkl-audanyi-"
+        },
+        {
+            "title": "Денис ауданы",
+            "lng": "61.620629",
+            "lat": "52.603040",
+            "timezone": "6",
+            "slug": "denis-audanyi"
+        },
+        {
+            "title": "Лисаков",
+            "lng": "62.492641",
+            "lat": "52.544079",
+            "timezone": "6",
+            "slug": "lisakov"
+        },
+        {
+            "title": "Жәнібек",
+            "lng": "46.85",
+            "lat": "49.416667",
+            "timezone": "5",
+            "slug": "zhnbek"
+        },
+        {
+            "title": "Жаркент",
+            "lng": "80.00",
+            "lat": "44.166667",
+            "timezone": "6",
+            "slug": "zharkent"
+        },
+        {
+            "title": "Қызылорда",
+            "lng": "65.516667",
+            "lat": "44.85",
+            "timezone": "5",
+            "slug": "yizyilorda"
+        },
+        {
+            "title": "Ақсай",
+            "lng": "52.59",
+            "lat": "51.10",
+            "timezone": "5",
+            "slug": "asaj"
+        },
+        {
+            "title": "Чапаев",
+            "lng": "51.175278",
+            "lat": "50.182778",
+            "timezone": "5",
+            "slug": "chapaev"
+        },
+        {
+            "title": "Жаңқала",
+            "lng": "50.303028",
+            "lat": "49.215139",
+            "timezone": "5",
+            "slug": "zhaala"
+        },
+        {
+            "title": "Бейнеу",
+            "lng": "55.188862",
+            "lat": "45.322946",
+            "timezone": "5",
+            "slug": "bejneu"
+        },
+        {
+            "title": "Ақтөбе",
+            "lng": "57.166667",
+            "lat": "50.3",
+            "timezone": "5",
+            "slug": "atbe"
+        },
+        {
+            "title": "Қандыағаш",
+            "lng": "57.423333",
+            "lat": "49.474444",
+            "timezone": "5",
+            "slug": "andyiaash"
+        },
+        {
+            "title": "Хромтау",
+            "lng": "58.434722",
+            "lat": "50.250278",
+            "timezone": "5",
+            "slug": "hromtau"
+        },
+        {
+            "title": "Шалқар",
+            "lng": "59.619290",
+            "lat": "47.831392",
+            "timezone": "5",
+            "slug": "shalar"
+        },
+        {
+            "title": "Қонаев",
+            "lng": "77.083333",
+            "lat": "43.883333",
+            "timezone": "6",
+            "slug": "apshaaj"
+        },
+        {
+            "title": "Талдықорған",
+            "lng": "78.366667",
+            "lat": "45.016667",
+            "timezone": "6",
+            "slug": "taldyioran"
+        },
+        {
+            "title": "Таран ауданы",
+            "lng": "62.771083",
+            "lat": "52.539620",
+            "timezone": "6",
+            "slug": "taran-audanyi"
+        },
+        {
+            "title": "Амангелді ауданы",
+            "lng": "65.461268",
+            "lat": "49.940951",
+            "timezone": "6",
+            "slug": "amangeld-audanyi"
+        },
+        {
+            "title": "Федеров ауданы",
+            "lng": "62.851689",
+            "lat": "53.692845",
+            "timezone": "6",
+            "slug": "federov-audanyi"
+        },
+        {
+            "title": "Жангелді ауданы",
+            "lng": "63.631067",
+            "lat": "49.699308",
+            "timezone": "6",
+            "slug": "zhangeld-audanyi"
+        },
+        {
+            "title": "Қарасу ауданы",
+            "lng": "65.392026",
+            "lat": "52.341344",
+            "timezone": "6",
+            "slug": "arasu-audanyi"
+        },
+        {
+            "title": "Меңдіқара ауданы",
+            "lng": "64.299378",
+            "lat": "53.933550",
+            "timezone": "6",
+            "slug": "medara-audanyi"
+        },
+        {
+            "title": "Науырзым  ауданы ",
+            "lng": "63.628399",
+            "lat": "51.304292",
+            "timezone": "6",
+            "slug": "nauyirzyim-audanyi-"
+        },
+        {
+            "title": "Сарыкөл ауданы",
+            "lng": "65.685604",
+            "lat": "53.440801",
+            "timezone": "6",
+            "slug": "saryikl-audanyi"
+        }
+    ]
+}

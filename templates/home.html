@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <span class="title">Prayer Time App</span>
+        <div class="header-time">
+            <div class="current-time">
+                <span>Current time(GMT +6):</span>
+                <span id="clock"></span>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class="invisible"></div>
+
+    <main>
+        <form action="{{ url_for('get_city_time') }}" method="post">
+            <div id="search">
+                <input type="text" placeholder="City Name (write it right! in Kazakh)" name="search">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+        <form action="{{ url_for('home')}}" method="get">
+            <div id="pray">
+                <div class="date">
+                    <span>Today {{ date }}</span>
+                    <span>{{ city }}</span>
+                </div>
+                <div id="pray-time">
+                    <div class="pray-name">
+                        <span>Fajr </span>
+                        <span>Sunrise </span>
+                        <span>Dhuhr </span>
+                        <span>Asr </span>
+                        <span>Maghrib </span>
+                        <span>Isha </span>
+                    </div>
+                    <div class="pray-time-name">
+                        <span>{{ times.fajr }}</span>
+                        <span>{{ times.sunrise }}</span>
+                        <span>{{ times.dhuhr }}</span>
+                        <span>{{ times.asr }}</span>
+                        <span>{{ times.maghrib }}</span>
+                        <span>{{ times.isha }}</span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </form>
+    </main>
+    <footer>
+        <a href="https://instagram.com/d15_is_me">Contact me!</a>
+    </footer>
+
+
+    <script src="../static/scripts/script.js"></script>
+</body>
+</html>
