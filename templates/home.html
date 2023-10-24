@@ -5,67 +5,124 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/bootstrap.min.css') }}">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap">
-    <title>Document</title>
+    <title>Pray Time</title>
 </head>
 <body>
     <header>
-        <span class="title">Prayer Time App</span>
-        <div class="header-time">
-            <div class="current-time">
-                <span>Current time(GMT +6):</span>
-                <span id="clock"></span>
-            </div>
-            
+
+        <div class="current-time">
+            <span>Текущее время (GMT +6):</span>
+            <span id="clock"></span>
         </div>
+
+        
+        <div class="todo">
+            {% block url %}<a href="{{ url_for('todos') }}" class="text-primary-emphasis">Список задач!</a>{% endblock url %}
+        </div>
+        
+
     </header>
 
     <div class="invisible"></div>
-
+    {% block main %}
     <main>
+        
         <form action="{{ url_for('get_city_time') }}" method="post">
-            <div id="search">
-                <input type="text" placeholder="City Name (write it right! in Kazakh)" name="search">
+            <div id="search" class="input-group">
+                
+                <select name="search" class="form-select">
+                    {% for city in cities %}
+                    <option value="{{ city.title }}">{{ city.title }}</option>
+                    {% endfor %}
+                </select>
+
                 <button type="submit">Search</button>
+
             </div>
         </form>
+
+        
         <form action="{{ url_for('home')}}" method="get">
             <div id="pray">
                 <div class="date">
-                    <span>Today {{ date }}</span>
+                    <span>{{ date }}</span>
                     <span>{{ city }}</span>
                 </div>
                 <div id="pray-time">
                     <div class="pray-name">
-                        <span>Fajr </span>
-                        <span>Sunrise </span>
-                        <span>Dhuhr </span>
-                        <span>Asr </span>
-                        <span>Maghrib </span>
-                        <span>Isha </span>
+                        <span class="fajr">Fajr</span>
+                        <span class="sunrise">Sunrise</span>
+                        <span class="dhuhr">Dhuhr</span>
+                        <span class="asr">Asr</span>
+                        <span class="maghrib">Maghrib</span>
+                        <span class="isha">Isha</span>
                     </div>
                     <div class="pray-time-name">
-                        <span>{{ times.fajr }}</span>
-                        <span>{{ times.sunrise }}</span>
-                        <span>{{ times.dhuhr }}</span>
-                        <span>{{ times.asr }}</span>
-                        <span>{{ times.maghrib }}</span>
-                        <span>{{ times.isha }}</span>
+                        <span id="fajr">{{ times.fajr }}</span>
+                        <span id="sunrise">{{ times.sunrise }}</span>
+                        <span id="dhuhr">{{ times.dhuhr }}</span>
+                        <span id="asr">{{ times.asr }}</span>
+                        <span id="maghrib">{{ times.maghrib }}</span>
+                        <span id="isha">{{ times.isha }}</span>
                     </div>
                 </div>
-
-                
             </div>
         </form>
+        
     </main>
+
     <footer>
-        <a href="https://instagram.com/d15_is_me">Contact me!</a>
+        <span>Be Happy! Be Better! >_< </span>
     </footer>
+    <script defer>
+        var currentTime = new Date();
+        
+        let dateObject = {
+            fajrTime: [new Date("{{ time_to_js }} {{ times.fajr }}"), document.getElementById("fajr"), document.querySelector(".fajr")],
+            sunriseTime: [new Date("{{ time_to_js }} {{ times.sunrise }}"), document.getElementById("sunrise"), document.querySelector(".sunrise")],
+            dhuhrTime: [new Date("{{ time_to_js }} {{ times.dhuhr }}"), document.getElementById("dhuhr"), document.querySelector(".dhuhr")],
+            asrTime: [new Date("{{ time_to_js }} {{ times.asr }}"), document.getElementById("asr"), document.querySelector(".asr")],
+            maghribTime: [new Date("{{ time_to_js }} {{ times.maghrib }}"), document.getElementById("maghrib"), document.querySelector(".maghrib")],
+            ishaTime: [new Date("{{ time_to_js }} {{ times.isha }}"), document.getElementById("isha"), document.querySelector(".isha")]
+        }
 
+        // console.log(dateObject.asrTime[0] <= currentTime );
 
-    <script src="../static/scripts/script.js"></script>
+        // Функция для получения следующего ключа в объекте
+        var lastKey = Object.keys(dateObject).pop(); // Получить последний ключ в объекте
+
+        for (var key in dateObject) {
+            var currentDateTime = dateObject[key][0];
+            var nextKey = getNextKey(dateObject, key);
+
+            if (currentTime >= currentDateTime && (currentTime < dateObject[nextKey][0] || key === lastKey)) {
+                dateObject[key][1].classList.add("bg-info-subtle");
+                dateObject[key][2].classList.add("bg-info-subtle");
+            } else {
+                dateObject[key][1].classList.remove("bg-info-subtle");
+                dateObject[key][2].classList.remove("bg-info-subtle");
+            }
+        }
+
+        // Функция для получения следующего ключа в объекте
+        function getNextKey(obj, currentKey) {
+            var keys = Object.keys(obj);
+            var currentIndex = keys.indexOf(currentKey);
+            if (currentIndex !== -1 && currentIndex < keys.length - 1) {
+                return keys[currentIndex + 1];
+            }
+            // Если текущий ключ - последний, вернуть текущий ключ
+            return currentKey;
+        }
+
+    </script>
+    {% endblock main %}
+    
+    <script src="{{ url_for('static', path='/js/script.js') }}"></script>
+    
+    <script src="{{ url_for('static', path='/js/bootstrap.bundle.min.js') }}" crossorigin="anonymous"></script>
 </body>
 </html>

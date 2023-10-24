@@ -1,0 +1,72 @@
+{% extends "home.html" %}
+
+{% block main %}
+<form action="{{ url_for('get_city_time')}}" method="get">
+    <div id="pray">
+        <div class="date">
+            <span>{{ date }}</span>
+            <span>{{ city }}</span>
+        </div>
+        <div id="pray-time">
+            <div class="pray-name">
+                <span class="fajr">Fajr</span>
+                <span class="sunrise">Sunrise</span>
+                <span class="dhuhr">Dhuhr</span>
+                <span class="asr">Asr</span>
+                <span class="maghrib">Maghrib</span>
+                <span class="isha">Isha</span>
+            </div>
+            <div class="pray-time-name">
+                <span id="fajr">{{ times.fajr }}</span>
+                <span id="sunrise">{{ times.sunrise }}</span>
+                <span id="dhuhr">{{ times.dhuhr }}</span>
+                <span id="asr">{{ times.asr }}</span>
+                <span id="maghrib">{{ times.maghrib }}</span>
+                <span id="isha">{{ times.isha }}</span>
+            </div>
+        </div>
+    </div>
+</form>
+<script defer>
+    var currentTime = new Date();
+    
+    let dateObject = {
+        fajrTime: [new Date("{{ time_to_js }} {{ times.fajr }}"), document.getElementById("fajr"), document.querySelector(".fajr")],
+        sunriseTime: [new Date("{{ time_to_js }} {{ times.sunrise }}"), document.getElementById("sunrise"), document.querySelector(".sunrise")],
+        dhuhrTime: [new Date("{{ time_to_js }} {{ times.dhuhr }}"), document.getElementById("dhuhr"), document.querySelector(".dhuhr")],
+        asrTime: [new Date("{{ time_to_js }} {{ times.asr }}"), document.getElementById("asr"), document.querySelector(".asr")],
+        maghribTime: [new Date("{{ time_to_js }} {{ times.maghrib }}"), document.getElementById("maghrib"), document.querySelector(".maghrib")],
+        ishaTime: [new Date("{{ time_to_js }} {{ times.isha }}"), document.getElementById("isha"), document.querySelector(".isha")]
+    }
+
+    // console.log(dateObject.asrTime[0] <= currentTime );
+
+    // Функция для получения следующего ключа в объекте
+    var lastKey = Object.keys(dateObject).pop(); // Получить последний ключ в объекте
+
+    for (var key in dateObject) {
+        var currentDateTime = dateObject[key][0];
+        var nextKey = getNextKey(dateObject, key);
+
+        if (currentTime >= currentDateTime && (currentTime < dateObject[nextKey][0] || key === lastKey)) {
+            dateObject[key][1].classList.add("bg-info-subtle");
+            dateObject[key][2].classList.add("bg-info-subtle");
+        } else {
+            dateObject[key][1].classList.remove("bg-info-subtle");
+            dateObject[key][2].classList.remove("bg-info-subtle");
+        }
+    }
+
+    // Функция для получения следующего ключа в объекте
+    function getNextKey(obj, currentKey) {
+        var keys = Object.keys(obj);
+        var currentIndex = keys.indexOf(currentKey);
+        if (currentIndex !== -1 && currentIndex < keys.length - 1) {
+            return keys[currentIndex + 1];
+        }
+        // Если текущий ключ - последний, вернуть текущий ключ
+        return currentKey;
+    }
+
+</script>
+{% endblock main %}
