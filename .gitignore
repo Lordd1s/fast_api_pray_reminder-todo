@@ -129,6 +129,8 @@ env.bak/
 venv.bak/
 .idea/
 __pycache__/
+.idea
+idea/
 
 # Spyder project settings
 .spyderproject
