@@ -2,15 +2,14 @@ import time
 import aiohttp
 import aiofiles
 import json
-import sqlite3
+import aiosqlite
 
 
-def create_sql():
-    with sqlite3.connect("database(sqlite3)/database.db") as conn:
-        cur = conn.cursor()
+async def create_sql():
+    async with aiosqlite.connect("database(sqlite3)/database.db") as conn:
         # cur.execute("CREATE TABLE todos(id INTEGER PRIMARY KEY AUTOINCREMENT, todo TEXT, when_to_do VARCHAR(20))")
         # cur.execute("ALTER TABLE todos ADD description TEXT NULL;")
-        cur.execute("INSERT INTO todos(description) VALUES ('description')")
+        await conn.execute("INSERT INTO todos(description) VALUES ('description')")
 
         # cur.execute("SELECT * FROM todos")
         # result = cur.fetchall()
@@ -60,9 +59,9 @@ class Todo:
     def __init__(self, path: str):
         self.path = path
 
-    def db_operations(
+    async def db_operations(
         self, query: str, many: bool = True, pk: tuple[int] = None, value: tuple = None
-    ) -> list | sqlite3.Error:
+    ):
         print(query.split()[0])
         """_summary_
 
@@ -80,34 +79,34 @@ class Todo:
         Returns:
             str: Success(list_type_object) or failure message(sqlite3.Error_type)
         """
-        with sqlite3.connect(self.path) as conn:
-            cursor = conn.cursor()
+        async with aiosqlite.connect(self.path) as conn:
+            cursor = await conn.cursor()
             try:
                 match query.split()[0]:
                     case "SELECT":
-                        cursor.execute(query)
-                        rows = cursor.fetchall() if many else cursor.fetchone()
+                        await cursor.execute(query)
+                        rows = await cursor.fetchall() if many else await cursor.fetchone()
                         return rows
                     case "DELETE":
-                        cursor.execute(query, (pk,))
-                        conn.commit()
+                        await cursor.execute(query, (pk,))
+                        await conn.commit()
                     case "UPDATE":
                         try:
-                            cursor.execute(query, value)
-                        except sqlite3.Error as e:
-                            conn.rollback()
+                            await cursor.execute(query, value)
+                        except aiosqlite.Error as e:
+                            await conn.rollback()
                             return e
                         else:
-                            conn.commit()
+                            await conn.commit()
                     case "INSERT":
                         try:
-                            cursor.execute(query, value)
-                        except sqlite3.Error as e:
-                            conn.rollback()
+                            await cursor.execute(query, value)
+                        except aiosqlite.Error as e:
+                            await conn.rollback()
                             return e
                         else:
-                            conn.commit()
-            except sqlite3.Error as e:
+                            await conn.commit()
+            except aiosqlite.Error as e:
                 return e
 
 
