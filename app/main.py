@@ -11,21 +11,14 @@ from routers import pray
 from routers import todo
 
 app = FastAPI(debug=True)
-# app.mount("/frontend/src", StaticFiles(directory="assets"), name="assets") # dist
-templates = Jinja2Templates(directory="frontend")
 
 app.include_router(todo.router)
 app.include_router(pray.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173"],  # change this to environment variable
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.get('/', response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse('index.html', {"request": request})
