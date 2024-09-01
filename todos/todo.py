@@ -1,4 +1,4 @@
-from utils import Todo
+from database.db import Todo
 from pray import current_date_to_json
 
 from starlette.responses import RedirectResponse, JSONResponse, HTMLResponse

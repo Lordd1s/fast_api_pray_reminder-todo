@@ -9,7 +9,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse
 
 import pray
-import todo
+import todos.todo as todo
 
 app = FastAPI(debug=True)
 # app.mount("/frontend/src", StaticFiles(directory="assets"), name="assets") # dist

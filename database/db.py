@@ -62,7 +62,7 @@ class Todo:
     async def db_operations(
         self, query: str, many: bool = True, pk: tuple[int] = None, value: tuple = None
     ):
-        print(query.split()[0])
+        # print(query.split()[0])
         """_summary_
 
         Args:
