@@ -1,15 +1,14 @@
 # uvicorn main:app --reload --host=0.0.0.0 --port=8000
 # http://127.0.0.1:8000/
 
-
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse
 
-import pray
-import todos.todo as todo
+from routers import pray
+from routers import todo
 
 app = FastAPI(debug=True)
 # app.mount("/frontend/src", StaticFiles(directory="assets"), name="assets") # dist
